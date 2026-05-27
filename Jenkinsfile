@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "geetaswapna/myapp"
+        IMAGE_NAME = "geetaswapna/myapp:old"
         TAG = "${BUILD_NUMBER}"
     }
 
@@ -71,7 +71,7 @@ pipeline {
 
                     git add .
 
-                    git commit -m "Updated image"
+                    git commit -m "Updated image" || true
 
                     git push
                     '''
