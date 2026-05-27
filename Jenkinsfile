@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = geetaswapna/myapp"
+        IMAGE_NAME = "geetaswapna/myapp"
         TAG = "${BUILD_NUMBER}"
     }
 
