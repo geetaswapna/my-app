@@ -17,7 +17,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $IMAGE_NAME:$TAG .'
+                sh 'docker build -t geetaswapna/myapp:v1 .'
             }
         }
 
@@ -40,7 +40,7 @@ pipeline {
 
         stage('Push Image') {
             steps {
-                sh 'docker push $IMAGE_NAME:$TAG'
+                sh 'docker push geetaswapna/myapp:v1'
             }
         }
 
@@ -56,12 +56,12 @@ pipeline {
 
                     sh '''
 
-                    git clone https://$GIT_USER:$GIT_PASS@github.com/username/k8s-manifests.git
+                    git clone https://$GIT_USER:$GIT_PASS@github.com/geetaswapna/k8-auto.git
 
-                    sed -i "s|image:.*|image: $IMAGE_NAME:$TAG|g" \
-                    k8s-manifests/deployment.yaml
+                    sed -i "s|image:.*|image: geetaswapna/myapp:v1|g" \
+                    k8-auto/deployment.yaml
 
-                    cd k8s-manifests
+                    cd k8-auto
 
                     git config user.email "jenkins@gmail.com"
                     git config user.name "jenkins"
