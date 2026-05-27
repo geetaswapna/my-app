@@ -10,10 +10,11 @@ pipeline {
     stages {
 
         stage('Clone Source') {
-            steps {
-                git 'https://github.com/geetaswapna/my-app.git'
-            }
-        }
+    steps {
+        git branch: 'main',
+        url: 'https://github.com/geetaswapna/my-app.git'
+    }
+}
 
         stage('Build Docker Image') {
             steps {
