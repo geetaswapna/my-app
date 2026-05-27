@@ -60,7 +60,7 @@ pipeline {
                     git clone https://$GIT_USER:$GIT_PASS@github.com/geetaswapna/k8-auto.git
 
                     sed -i "s|image:.*|image: geetaswapna/myapp:v1|g" \
-                    k8-auto/deployment.yaml
+                    k8-auto/deployment.yml
 
                     cd k8-auto
 
