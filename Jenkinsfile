@@ -18,7 +18,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t geetaswapna/my-nginx:v1 .'
+                sh 'docker build -t geetaswapna/my-nginx:v2 .'
             }
         }
 
@@ -41,7 +41,7 @@ pipeline {
 
         stage('Push Image') {
             steps {
-                sh 'docker push geetaswapna/my-nginx:v1'
+                sh 'docker push geetaswapna/my-nginx:v2'
             }
         }
 
