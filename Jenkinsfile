@@ -18,7 +18,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t geetaswapna/my-nginx:v2 .'
+                sh 'docker build -t geetaswapna/my-nginx:v3 .'
             }
         }
 
@@ -41,7 +41,7 @@ pipeline {
 
         stage('Push Image') {
             steps {
-                sh 'docker push geetaswapna/my-nginx:v2'
+                sh 'docker push geetaswapna/my-nginx:v3'
             }
         }
 
@@ -61,7 +61,7 @@ pipeline {
 
                     git clone https://\$GIT_USER:\$GIT_PASS@github.com/geetaswapna/k8-auto.git
 
-                    sed -i 's|image:.*|image: geetaswapna/my-nginx:v2|g' k8-auto/deployment.yml
+                    sed -i 's|image:.*|image: geetaswapna/my-nginx:v3|g' k8-auto/deployment.yml
 
                     cat k8-auto/deployment.yml
 
