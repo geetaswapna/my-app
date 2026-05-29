@@ -49,33 +49,32 @@ pipeline {
 
             steps {
 
-                withCredentials([usernamePassword(
-                    credentialsId: 'github-creds',
-                    usernameVariable: 'GIT_USER',
-                    passwordVariable: 'GIT_PASS'
-                )]) {
+    withCredentials([usernamePassword(
+        credentialsId: 'github-creds',
+        usernameVariable: 'GIT_USER',
+        passwordVariable: 'GIT_PASS'
+    )]) {
 
-                    sh '''
+        sh """
 
-                    rm -rf k8-auto
+        rm -rf k8-auto
 
-                    git clone https://$GIT_USER:$GIT_PASS@github.com/geetaswapna/k8-auto.git
+        git clone https://\$GIT_USER:\$GIT_PASS@github.com/geetaswapna/k8-auto.git
 
-                    sed -i '/image:/c\        image: geetaswapna/my-nginx:v2' \
-                    k8-auto/deployment.yml
-                    cd k8-auto
+        sed -i 's|image:.*|image: geetaswapna/my-nginx:v2|g' k8-auto/deployment.yml
 
-                    git config user.email "jenkins@gmail.com"
-                    git config user.name "jenkins"
+        cat k8-auto/deployment.yml
 
-                    git add .
+        cd k8-auto
 
-                    git commit -m "Updated image" || true
+        git config user.email "jenkins@gmail.com"
+        git config user.name "jenkins"
 
-                    git push
-                    '''
-                }
-            }
-        }
+        git add .
+
+        git commit -m "Updated image to v2" || true
+
+        git push origin main
+        """
     }
 }
