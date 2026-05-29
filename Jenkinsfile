@@ -61,9 +61,8 @@ pipeline {
 
                     git clone https://$GIT_USER:$GIT_PASS@github.com/geetaswapna/k8-auto.git
 
-                    sed -i "s|image:.*|image: geetaswapna/my-nginx:v2|g" \
+                    sed -i '/image:/c\        image: geetaswapna/my-nginx:v2' \
                     k8-auto/deployment.yml
-
                     cd k8-auto
 
                     git config user.email "jenkins@gmail.com"
