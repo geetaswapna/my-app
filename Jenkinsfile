@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "geetaswapna/myapp:old"
+        IMAGE_NAME = "geetaswapna/my-nginx"
         TAG = "${BUILD_NUMBER}"
     }
 
@@ -18,7 +18,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t geetaswapna/myapp:v1 .'
+                sh 'docker build -t geetaswapna/my-nginx:v1 .'
             }
         }
 
@@ -41,7 +41,7 @@ pipeline {
 
         stage('Push Image') {
             steps {
-                sh 'docker push geetaswapna/myapp:v1'
+                sh 'docker push geetaswapna/my-nginx:v1'
             }
         }
 
