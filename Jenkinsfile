@@ -4,7 +4,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = "geetaswapna/my-nginx"
-        TAG = "v2"
+        TAG = "v4"
     }
 
     stages {
@@ -18,7 +18,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t geetaswapna/my-nginx:v3 .'
+                sh 'docker build -t geetaswapna/my-nginx:v4 .'
             }
         }
 
@@ -41,7 +41,7 @@ pipeline {
 
         stage('Push Image') {
             steps {
-                sh 'docker push geetaswapna/my-nginx:v3'
+                sh 'docker push geetaswapna/my-nginx:v4'
             }
         }
 
@@ -61,7 +61,7 @@ pipeline {
 
                     git clone https://\$GIT_USER:\$GIT_PASS@github.com/geetaswapna/k8-auto.git
 
-                    sed -i 's|image:.*|image: geetaswapna/my-nginx:v3|g' k8-auto/deployment.yml
+                    sed -i 's|image:.*|image: geetaswapna/my-nginx:v4|g' k8-auto/deployment.yml
 
                     cat k8-auto/deployment.yml
 
@@ -72,7 +72,7 @@ pipeline {
 
                     git add .
 
-                    git commit -m "Updated image to v2" || true
+                    git commit -m "Updated image to v4" || true
 
                     git push origin main
 
